@@ -1,43 +1,66 @@
 import sys
+import os
+
+#todolist = []
+
+dateiname = "List.txt"
+
+if os.path.exists(dateiname):
+    with open(dateiname, "r", encoding="utf-8") as f:
+        todolist = [zeile.strip() for zeile in f.readlines()]
+        print("Liste geladen:", todolist)
+else:
+    todolist = []
+    print("Keine Datei gefunden. Starte mit leerer Liste.")
 
 def print_start():
-    print("Hallo. Was möchtest du tun?")
-    print("1 Aufgabe hinzufügen\n2 Aufgabe entfernen\n3 To-Do-Liste ansehen\n4 Exit")
+    print("\nHallo. Was möchtest du tun?")
+    print("1 Aufgabe hinzufügen")
+    print("2 Aufgabe entfernen")
+    print("3 To-Do-Liste ansehen")
+    print("4 Exit")
 
 def selection():
-    auswahl = ""
-    while auswahl == "":
+    while True:
         print_start()
         try:
-            auswahl = int (input("\nWas wollen sie tun?\n"))
-        except:
-            print ("Das ist keine Ganzzahl!")
-            continue
-        if auswahl < 1 or auswahl > 4:
-            print("Keine der vorhandener Menüpunkt")
-            auswahl = ""
+            auswahl = int(input("\nWas wollen Sie tun? "))
+            if 1 <= auswahl <= 4:
+                return auswahl
+            else:
+                print("Keine gültige Auswahl. Bitte 1 bis 4 eingeben.")
+        except ValueError:
+            print("Das ist keine Ganzzahl!")
+
+while True:
+    auswahl = selection()
+
+    if auswahl == 1:
+        name = input("Name der Aufgabe: ")
+        todolist.append(name)
+        print(f"Aufgabe '{name}' wurde hinzugefügt.")
+
+    elif auswahl == 2:
+        name = input("Welche Aufgabe möchtest du löschen? ")
+        if name in todolist:
+            todolist.remove(name)
+            print(f"Aufgabe '{name}' wurde entfernt.")
         else:
-            return auswahl
+            print(f"'{name}' ist nicht in der Liste.")
 
-auswahl = selection()
-todolist = []
+    elif auswahl == 3:
+        if not todolist:
+            print("Die To-Do-Liste ist leer.")
+        else:
+            print("To-Do-Liste:")
+            for i, item in enumerate(todolist, 1):
+                print(f"{i}. {item}")
 
-if auswahl == 1:
-    name = input("Name der Aufgabe: ")
-    todolist.append(name)
-
-    selection()
-
-if auswahl == 2:
-    name = input("Was möchtest du löschen?")
-    todolist.remove(name)
-    
-    selection()
-
-if auswahl == 3:
-    print(todolist)
-    
-    selection()
-
-if auswahl == 4:
-    sys.exit(1)
+    elif auswahl == 4:
+        print("Liste Speichern")
+        f = open("List.txt","a",encoding="utf-8")
+        for i in todolist:
+            f.write(str(i) + ":")
+        f.close()
+        print("Programm wird beendet.")
+        sys.exit(0)
