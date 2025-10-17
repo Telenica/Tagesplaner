@@ -7,7 +7,7 @@ dateiname = "List.txt"
 
 if os.path.exists(dateiname):
     with open(dateiname, "r", encoding="utf-8") as f:
-        todolist = [zeile.strip() for zeile in f.readlines()]
+        todolist = [zeile.strip() for zeile in f]
         print("Liste geladen:", todolist)
 else:
     todolist = []
@@ -60,7 +60,7 @@ while True:
         print("Liste Speichern")
         f = open("List.txt","a",encoding="utf-8")
         for i in todolist:
-            f.write(str(i) + ":")
+            f.write(i + "\n")
         f.close()
         print("Programm wird beendet.")
         sys.exit(0)
