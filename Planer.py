@@ -41,8 +41,11 @@ while True:
         print(f"Aufgabe '{name}' wurde hinzugefügt.")
 
     elif auswahl == 2:
-        name = input("Welche Aufgabe möchtest du löschen? ")
-        if name in todolist:
+        name = input("Welche Aufgabe möchtest du löschen? ").strip().lower()
+        if name == "alles":
+            todolist.clear()
+            print(f"Alle Aufgaben die in der To-Do-Liste enthalten waren, wurden gelöscht")
+        elif name in todolist:
             todolist.remove(name)
             print(f"Aufgabe '{name}' wurde entfernt.")
         else:
