@@ -39,7 +39,7 @@ while True:
     if auswahl == 1:
         filename = input("Name der Liste: ")
         todolist.append(filename)
-        print(f"Liste '{name}' wurde hinzugefügt.")
+        print(f"Liste '{filename}' wurde hinzugefügt.")
 
     elif auswahl == 2:
         name = input("Name der Aufgabe: ")
