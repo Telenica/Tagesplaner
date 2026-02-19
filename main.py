@@ -3,11 +3,13 @@ import os
 
 from storage import Storage
 from planner import Planner
+from motivation import Motivation
 
 def main():
     planner = Planner()
 
     #Liste wählen oder erstellen
+    print (Motivation().get_random())
     print("Welche Liste möchtest du beartbeiten?")
     list_name = input("Liste: ")
     planner.select_list(list_name)
