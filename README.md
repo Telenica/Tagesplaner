@@ -1,8 +1,9 @@
 # Tagesplaner
-Tägliche Aufgaben und Checkliste
+Tägliche Aufgaben mit Checkliste und ein Motivationsspruch bei jedem Start
 
 ToDos:
--Motivation einbauen
--an Kalender anhängen
--dass es auch funktioniert wenn man alles beendet hat
--online Motivationssprüche hernehmen, nicht nur selbst geschriebene
+- Tests einbauen
+- an Kalender anhängen
+- Bug mit fixxen, welcher dafür sorgt, dass es nicht startet wenn man es zum zweiten Mal starten möchte
+- mehr und variablere Motivationssprüche finden und vlt. sogar von Google o.ä. nehmen
+- Motivationssprüche häufiger anwenden -> vlt. auch an den Tag anhängen
