@@ -3,7 +3,7 @@ from task import Task
 
 #Listen speichern und laden
 class Storage:
-    def __init__(self, filename="todolist.json"):
+    def __init__(self, filename="ToDo.json"):
         self.filename = filename
 
     #Speichern
@@ -18,12 +18,14 @@ class Storage:
     #Laden
     def load(self):
         try:
-            with open(self.filename, "r") as f:
-                content = f.read().strip()  # Inhalt lesen und whitespace trimmen
-                if not content:             # falls leer
-                    return {}
+            with open(self.filename, "r", encoding="utf-8") as f:
                 data = json.load(f)
-                return {name: [Task(t["title"], t["completed"]) for t in tasks] for name, tasks in data.items()}
+                return {
+                    name: [Task(t["title"], t["completed"]) for t in tasks]
+                    for name, tasks in data.items()
+                }
         except FileNotFoundError:
             print(f"Keine Datei mit Namen '{self.filename}' gefunden. Starte mit leerer Liste.")
-            return{}
+            return {}
+        except json.JSONDecodeError:
+            return {}
