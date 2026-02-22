@@ -3,7 +3,7 @@ from storage import Storage
 
 #Aufgaben verwalten
 class Planner:
-    def __init__(self, filename="todolist.json"):
+    def __init__(self, filename="AlleListen.json"):
         self.storage = Storage(filename)
         self.lists = self.storage.load()
         self.current_list = None
@@ -49,6 +49,5 @@ class Planner:
     #Alle Aufgaben löschen
     def delete_all(self):
         task = self.get_tasks()
-        for t in task:
-            del t
+        task.clear()
         self.storage.save(self.lists)
